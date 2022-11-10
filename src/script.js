@@ -5,8 +5,37 @@ const container = document.querySelector('.container');
 const colourInput = document.getElementById('colour-input');
 const clearBtn = document.querySelector('.clear-button');
 const sizeButtons = document.querySelectorAll('.select-button');
+const colourButton = document.querySelector('.colour-container');
+
 
 clearBtn.addEventListener('click', clearAll);
+
+colourInput.addEventListener('change', function() {
+  const colourInputRgba = hexToRgbA(colourInput.value);
+  const sizeParagraph = document.querySelector('.size-paragraph');
+  const h1 = document.querySelector('h1');
+  const h1span = document.querySelector('.h1-span');
+  document.body.style.background = `linear-gradient(0deg, rgba(17,17,17,1) 0%, rgba(19,19,19,1) 40%, ${colourInputRgba} 40%, ${colourInputRgba} 60%, rgba(19,19,19,1) 60%, rgba(17,17,17,1) 100%)`;
+  sizeParagraph.style.color = colourInput.value;
+  h1.style.borderBottomColor = colourInput.value;
+  h1span.style.color = colourInput.value;
+});
+
+clearBtn.addEventListener('mouseenter', () => {
+  clearBtn.style.backgroundColor = colourInput.value;
+});
+
+clearBtn.addEventListener('mouseleave', () => {
+  clearBtn.style.backgroundColor = '#c7bba6';
+});
+
+colourButton.addEventListener('mouseenter', () => {
+  colourButton.style.backgroundColor = colourInput.value;
+});
+
+colourButton.addEventListener('mouseleave', () => {
+  colourButton.style.backgroundColor = '#c7bba6';
+});
 
 
 sizeButtons.forEach((button, index) => {
@@ -30,6 +59,13 @@ sizeButtons.forEach((button, index) => {
       container.classList.add('large-boxes');
     };
   })
+  button.addEventListener('mouseenter', () => {
+    button.style.backgroundColor = colourInput.value;
+  });
+  
+  button.addEventListener('mouseleave', () => {
+    button.style.backgroundColor = '#c7bba6';
+  });
 })
 
 for (let i = 0; i < 5000; i++) {
@@ -61,5 +97,17 @@ function colourSquare(gridBox) {
   gridBox.classList.add('coloured');
 }
 
+function hexToRgbA(hex){
+  var c;
+  if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+      c= hex.substring(1).split('');
+      if(c.length== 3){
+          c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+      }
+      c= '0x'+c.join('');
+      return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+',1)';
+  }
+  throw new Error('Bad Hex');
+}
 
 
