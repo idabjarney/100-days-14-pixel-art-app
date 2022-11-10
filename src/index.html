@@ -4,14 +4,28 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>pixel-matic</title>
   </head>
   <body>
     <div class="container-border">
-      <div class="container"></div>
-      <div class="colour-container">
-        <input type="color" id="colour-input" name="colour-input" value="#1a1617">
-        <label for="colour-input">Select colour</label>
+      <h1>pixel-<span>matic</span></h1>
+      <div class="container medium-boxes"></div>
+      <div class="controls">
+        <div class="size-container">
+          <p>SELECT SIZE</p>
+          <div class="size-container-buttons">
+            <button class="select-small-button select-button"><span></span></button>
+            <button class="select-medium-button select-button"><span></span></button>
+            <button class="select-large-button select-button"><span></span></button>
+          </div>
+        </div>
+        <div class="controls-container">
+          <div class="colour-container">
+            <input type="color" id="colour-input" name="colour-input" value="#1a1617">
+            <label for="colour-input">COLOUR</label>
+          </div>
+          <button class="clear-button"><span>X</span> CLEAR</button>
+        </div>
       </div>
     </div>
   </body>
